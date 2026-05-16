@@ -1,0 +1,33 @@
+SHOW DATABASES;
+
+CREATE DATABASE UniversityDB;
+
+USE UniversityDB;
+
+CREATE TABLE ComputerScience (
+    student_id BIGINT,
+    student_name VARCHAR(100),
+    marks TINYINT
+);
+
+CREATE TABLE MechanicalEngineering (
+    student_id BIGINT,
+    student_name VARCHAR(100),
+    marks TINYINT
+);
+
+CREATE TABLE ElectricalEngineering (
+    student_id BIGINT,
+    student_name VARCHAR(100),
+    marks TINYINT
+);
+
+SHOW TABLES FROM UniversityDB;
+
+INSERT INTO ComputerScience 
+VALUES (101, 'Rahul Reddy', 95);
+
+INSERT INTO ComputerScience 
+VALUES (102, 'Ananya Reddy', 88);
+
+SELECT * FROM ComputerScience;
