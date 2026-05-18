@@ -1,0 +1,57 @@
+CREATE TABLE employee_data (
+    emp_no INT
+);
+
+START TRANSACTION;
+
+INSERT INTO employee_data VALUES (201);
+
+SAVEPOINT first_point;
+
+INSERT INTO employee_data VALUES (202);
+
+SAVEPOINT second_point;
+
+SELECT * FROM employee_data;
+
+INSERT INTO employee_data VALUES (203);
+
+SAVEPOINT third_point;
+
+ROLLBACK TO first_point;
+
+INSERT INTO employee_data VALUES (204);
+
+SELECT * FROM employee_data;
+
+COMMIT;
+
+
+SHOW DATABASES;
+
+USE vit_academics;
+
+SHOW TABLES FROM vit_academics;
+
+SELECT * FROM student_info;
+
+DESC student_info;
+
+ALTER TABLE student_info ADD(
+    parent_contact BIGINT,
+    emergency_contact BIGINT
+);
+
+INSERT INTO student_info 
+VALUES (205, "Madhur", 91, 'IT', 'Nepal');
+
+ALTER TABLE student_info 
+DROP COLUMN emergency_contact;
+
+ALTER TABLE student_info ADD(
+    student_region VARCHAR(40) DEFAULT 'INDIA'
+);
+
+ALTER TABLE student_info 
+RENAME COLUMN student_region TO student_location;
+
