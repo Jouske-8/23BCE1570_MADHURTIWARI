@@ -1,0 +1,61 @@
+-- 1. Fetch FIRST_NAME using alias name as WORKER_NAME
+SELECT FIRST_NAME AS 'John'
+FROM Worker;
+
+-- 2. Fetch unique values of DEPARTMENT
+SELECT DISTINCT DEPARTMENT
+FROM Worker;
+
+-- 3. Print details for Workers with first name as 'Vipul' and 'Satish' (without OR)
+SELECT *
+FROM Worker
+WHERE FIRST_NAME IN ('Vipul', 'Satish');
+
+-- 4. Print details of Workers whose FIRST_NAME contains 'a'
+SELECT *
+FROM Worker
+WHERE FIRST_NAME LIKE '%a%';
+
+-- 5. Print details of Workers whose FIRST_NAME ends with 'a'
+SELECT *
+FROM Worker
+WHERE FIRST_NAME LIKE '%a';
+
+-- 6. Print details of admins whose SALARY lies between 100000 and 500000
+SELECT *
+FROM Worker
+WHERE DEPARTMENT = 'Admin'
+AND SALARY BETWEEN 100000 AND 500000;
+
+-- 7. Fetch count of employees working in the 'Admin' department
+SELECT COUNT(*) AS Admin_Count
+FROM Worker
+WHERE DEPARTMENT = 'Admin';
+
+-- 8. Show the second highest salary from the table
+SELECT MAX(SALARY) AS Second_Highest_Salary
+FROM Worker
+WHERE SALARY < (
+    SELECT MAX(SALARY)
+    FROM Worker
+);
+
+-- 9. Fetch departments that have less than three people in it
+SELECT DEPARTMENT
+FROM Worker
+GROUP BY DEPARTMENT
+HAVING COUNT(*) < 3;
+
+-- 10. Show all departments along with the total number of people in them
+SELECT DEPARTMENT, COUNT(*) AS Total_Employees
+FROM Worker
+GROUP BY DEPARTMENT;
+
+-- 11. Print the name of employees having the highest salary in each department
+SELECT FIRST_NAME, DEPARTMENT, SALARY
+FROM Worker w1
+WHERE SALARY = (
+    SELECT MAX(SALARY)
+    FROM Worker w2
+    WHERE w1.DEPARTMENT = w2.DEPARTMENT
+);
