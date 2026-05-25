@@ -1,0 +1,110 @@
+db.createCollection("Student")
+{ ok: 1 }
+show collections
+Student
+db.student.dwop()
+TypeError: db.student.dwop is not a function
+db.student.drop()
+true
+show collections
+Student
+show collections
+Student
+db.student.drop()
+true
+sgow collection
+SyntaxError: Missing semicolon. (1:4)
+
+> 1 | sgow collection
+    |     ^
+show collections
+Student
+db.Student.drop()
+true
+show collections
+db.createCollection("Employee")
+{ ok: 1 }
+db.Employee.insert(name:'DIvyansh', department:'CSE')
+SyntaxError: Unexpected token, expected "," (1:23)
+
+> 1 | db.Employee.insert(name:'DIvyansh', department:'CSE')
+    |                        ^
+db.Employee.insert({name:'DIvyansh', department:'CSE'})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a1458b6a12129141fa70676')
+  }
+}
+db.Empolyee.insert({name:'Akash',marks:'95',location:'Pune'})
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a1458f4a12129141fa70677')
+  }
+}
+db.Employee.find
+[Function: find] AsyncFunction {
+  returnsPromise: true,
+  apiVersions: [ 1, Infinity ],
+  returnType: 'Cursor',
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  topologies: [ 'ReplSet', 'Standalone', 'Sharded', 'LoadBalanced' ],
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  newShellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+db.Employee.find()
+{
+  _id: ObjectId('6a1458b6a12129141fa70676'),
+  name: 'DIvyansh',
+  department: 'CSE'
+}
+db.Empolyee.find()
+{
+  _id: ObjectId('6a1458f4a12129141fa70677'),
+  name: 'Akash',
+  marks: '95',
+  location: 'Pune'
+}
+show collections
+Employee
+Empolyee
+drop Emoplyee
+SyntaxError: Missing semicolon. (1:4)
+
+> 1 | drop Emoplyee
+    |     ^
+db.drop.emooplyee
+sharbyte.drop.emooplyee
+show collections
+Employee
+Empolyee
+db.Emoplyee.drop()
+true
+show collections
+Employee
+Empolyee
+db.Empolyee.drop()
+true
+show collections
+Employee
+db.Employee.insert({name:'Akash',marks:'95',location:'Pune'})
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a145b2da12129141fa70678')
+  }
+}
+db.Empolyee.find()
+db.Employee.find()
+{
+  _id: ObjectId('6a1458b6a12129141fa70676'),
+  name: 'DIvyansh',
+  department: 'CSE'
+}
