@@ -1,0 +1,244 @@
+// Q1. Insert one employee document
+db.employees.insertOne({
+  empId: 101,
+  name: "Rahul Singh",
+  age: 27,
+  department: "IT",
+  city: "Lucknow",
+  salary: 55000,
+  experience: 4,
+  skills: ["Java", "MongoDB", "AWS"]
+});
+
+
+// Q2. Insert multiple employee documents
+db.employees.insertMany([
+  {
+    empId: 102,
+    name: "Neha Kapoor",
+    age: 31,
+    department: "HR",
+    city: "Jaipur",
+    salary: 50000,
+    experience: 6,
+    skills: ["Recruitment", "Excel", "Communication"]
+  },
+  {
+    empId: 103,
+    name: "Vikram Patel",
+    age: 25,
+    department: "IT",
+    city: "Ahmedabad",
+    salary: 65000,
+    experience: 3,
+    skills: ["Python", "MongoDB", "AWS"]
+  },
+  {
+    empId: 104,
+    name: "Pooja Reddy",
+    age: 33,
+    department: "Finance",
+    city: "Hyderabad",
+    salary: 72000,
+    experience: 8,
+    skills: ["Accounting", "Excel", "SAP"]
+  },
+  {
+    empId: 105,
+    name: "Arjun Malhotra",
+    age: 29,
+    department: "Marketing",
+    city: "Indore",
+    salary: 58000,
+    experience: 5,
+    skills: ["SEO", "Content", "Analytics"]
+  },
+  {
+    empId: 106,
+    name: "Meera Joshi",
+    age: 36,
+    department: "IT",
+    city: "Kolkata",
+    salary: 80000,
+    experience: 10,
+    skills: ["Java", "MongoDB", "AWS"]
+  }
+]);
+
+
+// Q3. Find one employee from IT department
+db.employees.findOne({
+  department: "IT"
+});
+
+
+// Q4. Display all employees
+db.employees.find();
+
+
+// Q5. Display only name and salary
+db.employees.find(
+  {},
+  {
+    _id: 0,
+    name: 1,
+    salary: 1
+  }
+);
+
+
+// Q6. Find employees with salary equal to 50000
+db.employees.find({
+  salary: 50000
+});
+
+
+// Q7. Find employees with salary less than 60000
+db.employees.find({
+  salary: { $lt: 60000 }
+});
+
+
+// Q8. Find employees with salary greater than or equal to 60000
+db.employees.find({
+  salary: { $gte: 60000 }
+});
+
+
+// Q9. Find employees whose age is not equal to 30
+db.employees.find({
+  age: { $ne: 30 }
+});
+
+
+// Q10. Find employees from Chennai or Mumbai
+db.employees.find({
+  city: {
+    $in: ["Chennai", "Mumbai"]
+  }
+});
+
+
+// Q11. Find employees not from Chennai
+db.employees.find({
+  city: { $ne: "Chennai" }
+});
+
+
+// Q12. Find IT employees with salary greater than 50000
+db.employees.find({
+  department: "IT",
+  salary: { $gt: 50000 }
+});
+
+
+// Q13. Find employees from Chennai or Bangalore
+db.employees.find({
+  $or: [
+    { city: "Chennai" },
+    { city: "Bangalore" }
+  ]
+});
+
+
+// Q14. Find employees not earning above 60000
+db.employees.find({
+  salary: {
+    $not: {
+      $gt: 60000
+    }
+  }
+});
+
+
+// Q15. Find employees neither in IT nor HR
+db.employees.find({
+  department: {
+    $nin: ["IT", "HR"]
+  }
+});
+
+
+// Q16. Find documents containing experience field
+db.employees.find({
+  experience: { $exists: true }
+});
+
+
+// Q17. Find documents where salary is Integer
+db.employees.find({
+  salary: { $type: "int" }
+});
+
+
+// Q18. Find employees having MongoDB skill
+db.employees.find({
+  skills: "MongoDB"
+});
+
+
+// Q19. Find employees having both MongoDB and AWS
+db.employees.find({
+  skills: {
+    $all: ["MongoDB", "AWS"]
+  }
+});
+
+
+// Q20. Find employees with exactly 3 skills
+db.employees.find({
+  $expr: {
+    $eq: [
+      { $size: "$skills" },
+      3
+    ]
+  }
+});
+
+
+// Q21. Find employees having Java skill using elemMatch
+db.employees.find({
+  skills: {
+    $elemMatch: {
+      $eq: "Java"
+    }
+  }
+});
+
+
+// Q22. Display employees sorted by salary descending
+db.employees.find().sort({
+  salary: -1
+});
+
+
+// Q23. Display top 3 highest paid employees
+db.employees.find()
+  .sort({ salary: -1 })
+  .limit(3);
+
+
+// Q24. Increase salary of employee 101 by 5000
+db.employees.updateOne(
+  { empId: 101 },
+  {
+    $inc: {
+      salary: 5000
+    }
+  }
+);
+
+
+// Q25. Increase salary of all IT employees by 10%
+db.employees.updateMany(
+  { department: "IT" },
+  [
+    {
+      $set: {
+        salary: {
+          $multiply: ["$salary", 1.1]
+        }
+      }
+    }
+  ]
+);
